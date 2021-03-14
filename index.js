@@ -1,10 +1,13 @@
 const express = require('express');
+const path = require('path');
+const productsRouter = require('./routes/products');
 const app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
-  res.send({message: 'Hello World!'})
-});
+app.use('/products', productsRouter);
+
 
 const server = app.listen(3000, () => {
   console.log(`listening http://localhost:${server.address().port}/`)
